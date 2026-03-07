@@ -1,9 +1,9 @@
 #include<iostream>
 using namespace std;
 main(){
-
+int num;
+int sum=0;
 cout<<"Enter 5 integers:"<<endl;
-int integer, sum=0;
 cin>>integer;
 sum=sum + integer;
 cin>> integer;
