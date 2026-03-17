@@ -14,7 +14,7 @@ main(){
     if(speed>50 && speed<=150){
     cout<<"Fast";
     }
-    if(speed>150 && speed<=1000){
+    if(speed>150 || speed<=1000){
 cout<<" ultra fast ";
     }
     if(speed>1000){
