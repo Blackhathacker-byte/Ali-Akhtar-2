@@ -1,10 +1,9 @@
 #include <iostream>
 #include <conio.h>
 using namespace std;
-
 int main()
 { // variables ground
-    int choice;
+    string choice;
     string name[100];
     int accNo[100];
     int balance[100];
@@ -14,23 +13,26 @@ int main()
     string history[100];
     while (true)
     { // choice ground
-        cout << "========================\n";
+        system("cls");
+        cout << "\n========================\n";
         cout << "1.Admin Menu\n";
         cout << "2.User  Menu\n";
         cout << "========================\n";
         cout << "Enter a choice:";
         cin >> choice;
-        if (choice == 1)
+        cout<<"\nPress any key to continue";
+        getch();
+        if (choice == "1")
         { // start of admin menu
             system("cls");
             cout << "======WELCOME DEAR ADMIN TO LOGIN PAGE======\n";
             cout << "Enter Username and Password:\n";
             string username;
-            int password;
+            string password;
             cin >> username;
             cin >> password;
 
-            if (username == "admin" && password == 1234)
+            if (username == "admin" && password == "1234")
             {
                 cout << "Login Succesful:\n";
                 while (true) //
@@ -47,16 +49,16 @@ int main()
                     cout << "7. Freeze/Unfreeze Account\n";
                     cout << "8. View History\n";
                     cout << "9. Daily Report\n";
-                    cout << "10. Logout\n";
+                    cout << "10.Logout\n";
                     cout << "\nEnter choice: ";
                     cin >> choice;
-                    if (choice == 10)
+                    if (choice == "10")
                     {
                         cout << "\nYou decided to logout";
                         break;
                     }
                     // add account
-                    else if (choice == 1)
+                    else if (choice == "1")
                     {
                         system("cls");
                         cout << "\nAdd Account\n";
@@ -75,13 +77,13 @@ int main()
                         totalAccounts++;
 
                         cout << "Account Added Successfully\n";
-                        cout << "Press any key to continue:";
-                        getch();
                         history[historyIndex] = "Account Added:" + name[totalAccounts - 1];
                         historyIndex++;
+                        cout << "Press any key to continue:";
+                        getch();
                     }
                     // remove account
-                    else if (choice == 2)
+                    else if (choice == "2")
                     {
                         system("cls");
                         cout << "Remove Account\n";
@@ -103,6 +105,8 @@ int main()
                         if (index == -1) //
                         {
                             cout << "Account not found!" << endl;
+                            cout << "Press any key to continue:";
+                            getch();
                         }
                         else
                         {
@@ -125,7 +129,7 @@ int main()
                         }
                     }
                     // update account
-                    else if (choice == 3)
+                    else if (choice == "3")
                     {
                         system("cls");
                         cout << "Update Account\n";
@@ -147,7 +151,7 @@ int main()
                         if (found == -1)
                         {
                             cout << "Account Not Found\n";
-                            cout<<"\nPress any key to continue:";
+                            cout << "\nPress any key to continue:";
                             getch();
                         }
                         else
@@ -160,14 +164,14 @@ int main()
                             cin >> balance[found];
 
                             cout << "Account Updated Successfully\n";
-                            cout << "Press any key to continue:";
-                            getch();
                             history[historyIndex] = "Account updated succesfully:" + name[found];
                             historyIndex++;
+                            cout << "Press any key to continue:";
+                            getch();
                         }
                     }
                     // for viewing accounts
-                    else if (choice == 4)
+                    else if (choice == "4")
 
                     {
                         system("cls");
@@ -203,9 +207,10 @@ int main()
                         getch();
                     }
                     // SEARCHING ACCOUNT
-                    else if (choice == 5)
+                    else if (choice == "5")
                     {
                         system("cls");
+                        bool found = false;
                         int searchAcc;
                         cout << "Enter account number of account You want to search:\n";
                         cin >> searchAcc;
@@ -221,20 +226,23 @@ int main()
                                 // history saving
                                 history[historyIndex] = "Account viewed " + name[o];
                                 historyIndex++;
+                                found = true;
+                                break;
                             }
-                            else
-                            {
-                                cout << "\nACCOUNT NOT FOUND!";
-                            }
-                            cout << "\nPress any key to continue:";
-                            getch();
                         }
+                        if (!found)
+                        {
+                            cout << "\nACCOUNT NOT FOUND!";
+                        }
+                        cout << "\nPress any key to continue:";
+                        getch();
                         cout << "\n"
                              << endl;
                     }
                     // sorting most difficult part(balance wise)
-                    else if (choice == 6)
-                    { system("cls");
+                    else if (choice == "6")
+                    {
+                        system("cls");
                         cout << "\nSort the sccounts:";
                         for (int i = 0; i < totalAccounts; i++)
                         {
@@ -266,11 +274,11 @@ int main()
                         history[historyIndex] = "Account sorted: ";
                         historyIndex++;
                         cout << "Accounts sorted by Balance" << endl;
-                        cout<<"press any key to continue:";
-                            getch();
+                        cout << "press any key to continue:";
+                        getch();
                     }
                     // freezing & unfreezing account
-                    else if (choice == 7)
+                    else if (choice == "7")
                     {
                         system("cls");
                         int accnumber;
@@ -288,7 +296,7 @@ int main()
                         if (index == -1)
                         {
                             cout << "\nAccount not found!";
-                            cout<<"\nPress any key to continue:";
+                            cout << "\nPress any key to continue:";
                             getch();
                         }
                         else
@@ -297,29 +305,29 @@ int main()
                             {
                                 status[index] = false;
                                 cout << "\nAccount frozen";
-                                cout<<"\nPress any key to continue:";
-                            getch();
                                 // history saving
                                 history[historyIndex] = "Freezed: Account name " + name[index];
                                 historyIndex++;
+                                cout << "\nPress any key to continue:";
+                                getch();
                             }
                             else
                             {
 
                                 status[index] = true;
                                 cout << "\nAccount Activated";
-                                cout<<"\nPress any key to continue:";
-                            getch();
                                 // history saving
                                 history[historyIndex] = "Unfreezed: Account name " + name[index];
                                 historyIndex++;
+                                cout << "\nPress any key to continue:";
+                                getch();
                             }
                         }
                     }
                     // for history
-                    else if (choice == 8)
+                    else if (choice == "8")
                     {
-                system("cls");
+                        system("cls");
                         cout << "\nShowing the history:";
                         cout << "\n =======================";
                         for (int i = 0; i < historyIndex; i++)
@@ -327,11 +335,11 @@ int main()
                             cout << "\n " << i + 1 << ". " << history[i] << "";
                         }
                         cout << "" << endl;
-                        cout<<"\nPress any key to continue:";
-                            getch();
+                        cout << "\nPress any key to continue:";
+                        getch();
                     }
                     // daily reports
-                    else if (choice == 9)
+                    else if (choice == "9")
                     {
                         system("cls");
                         cout << "\n -: Viewing The Daily Report :- ";
@@ -354,25 +362,26 @@ int main()
                         cout << "Active Accounts: " << activatedaccounts << endl;
                         cout << "Frozen Accounts: " << frozenaccounts << endl;
                         cout << "Total Balance: " << totalbalance << endl;
-                        cout<<"\nPress any key to continue:";
-                            getch();
+                        cout << "\nPress any key to continue:";
+                        getch();
                     }
                     else
                     {
                         cout << "Invalid\n";
-                        cout<<"\nPress any key to continue:";
-                            getch();
+                        cout << "\nPress any key to continue:";
+                        getch();
                     }
                 }
             }
         }
         // For the user menu
-        else if (choice == 2)
+        else if (choice == "2")
         {
             while (true)
             {
+                system("cls");
                 cout << "\n:::::::::::================================:::::::::::::::::::::";
-                cout << "\n       WELCOME TO ALI BANKING MANAGEMENT SYATEM";
+                cout << "\n       WELCOME TO ALI BANKING MANAGEMENT SYSTEM";
                 cout << "\n:::::::::::================================:::::::::::::::::::::";
                 cout << "\n            You are in USER MENU right now\n";
                 cout << "\n1. View Account Details";
@@ -382,21 +391,23 @@ int main()
                 cout << "\n5. Check Account Status";
                 cout << "\n6. Search Account";
                 cout << "\n7. Change Account Name";
-                cout << "\n8. View All Accounts";
-                cout << "\n9. Total accounts & Balance";
-                cout << "\n10. Exit";
+                cout << "\n8. Transfer money";
+                cout << "\n9. Loan Egligibility";
+                cout << "\n10.Exit";
 
                 cout << "\nEnter choice: ";
                 cin >> choice;
                 // breaking loop
-                if (choice == 10)
+                if (choice == "10")
                 {
+                    cout << "\n Thank you for using\n Have a nice day! ";
                     break;
                 }
 
                 // 1. View Account Details
-                else if (choice == 1)
-                {system("cls");
+                else if (choice == "1")
+                {
+                    system("cls");
                     cout << "\nEnter the account number of account you want to see:";
                     int acc;
                     cin >> acc;
@@ -417,21 +428,20 @@ int main()
                         cout << "\nName: " << name[index];
                         cout << "\nAccount Number: " << accNo[index];
                         cout << "\nBalance: " << balance[index];
-                        
                     }
                     else
                     {
                         cout << "\nNo account found!:\n";
-                       
                     }
-                     cout<<"\nPress any key to continue:";
-                            getch();
+                    cout << "\nPress any key to continue:";
+                    getch();
                 }
 
                 // 2. Check Balance
-                else if (choice == 2)
+                else if (choice == "2")
                 {
                     system("cls");
+                    bool found = false;
                     cout << "\nEnter the account number:";
                     int acc;
                     cin >> acc;
@@ -441,22 +451,21 @@ int main()
                         if (accNo[i] == acc)
                         {
                             cout << " Account balance :" << balance[i];
-                            cout<<"\nPress any key to continue:";
-                            getch();
+                            found = true;
                             break;
                         }
-                        else
-                        {
-                            cout << "\nNo account found!:";
-                            cout<<"\nPress any key to continue:";
-                            getch();
-                        }
                     }
+                    if (!found)
+                        cout << "\nNo account found!:";
+                    cout << "\nPress any key to continue:";
+                    getch();
                 }
 
                 // 3. Deposit Money
-                else if (choice == 3)
-                {system("cls");
+                else if (choice == "3")
+                {
+                    system("cls");
+                    bool deposited = false;
                     int acc, amount;
                     cout << "\nEnter account number:";
                     cin >> acc;
@@ -469,80 +478,101 @@ int main()
                         {
                             balance[i] += amount;
                             cout << "Money Deposited";
-                            cout<<"\nPress any key to continue:";
-                            getch();
-                        }
-                        else
-                        {
-                            cout << " No such account available to withdraw:";
-                            cout<<"\nPress any key to continue:";
-                            getch();
+
+                            deposited = true;
+                            break;
                         }
                     }
+                    if (!deposited)
+                    {
+                        cout << "\nAccount not found! ";
+                    }
+                    cout << "\nPress any key to continue:";
+                    getch();
                 }
 
                 // 4. Withdraw Money
-                else if (choice == 4)
-                {system("cls");
+                else if (choice == "4")
+                {
+                    system("cls");
                     int acc, amount;
                     cout << "\nEnter Account Number: ";
                     cin >> acc;
                     cout << "\nEnter Amount to Withdraw: ";
                     cin >> amount;
 
+                    bool found = false;
                     for (int i = 0; i < totalAccounts; i++)
                     {
                         if (accNo[i] == acc)
                         {
-                            if (balance[i] >= amount)
+                            found = true;
+                            if (status[i] == false)
+                            {
+                                cout << "Account is Frozen";
+                            }
+                            else if (balance[i] >= amount)
                             {
                                 balance[i] -= amount;
                                 cout << "Withdraw successful enjoy the day!";
-                                cout<<"\nPress any key to continue:";
-                            getch();
                             }
                             else
                             {
                                 cout << "Insufficient balance ";
-                                cout<<"\nPress any key to continue:";
-                            getch();
                             }
                             break;
                         }
                     }
+                    if (!found)
+                    {
+                        cout << "\nAccount not found!";
+                    }
+                    cout << "\nPress any key to continue:";
+                    getch();
                 }
 
                 // 5. Check Account Status
-                else if (choice == 5)
-                { system("cls");
+                else if (choice == "5")
+                {
+                    system("cls");
                     cout << "\nEnter Account Number: ";
                     int acc;
                     cin >> acc;
 
+                    bool found = false;
                     for (int i = 0; i < totalAccounts; i++)
                     {
                         if (accNo[i] == acc)
                         {
-                            if (status[i]){
+                            found = true;
+                            if (status[i])
+                            {
                                 cout << " Account is Active";
-                                cout<<"\nPress any key to continue:";
-                            getch();
                             }
-                            else{
+                            else
+                            {
                                 cout << " Account is Frozen";
-                            break;
                             }
+                            break;
                         }
                     }
+                    if (!found)
+                    {
+                        cout << "\nAccount not found!";
+                    }
+                    cout << "\nPress any key to continue:";
+                    getch();
                 }
 
                 // 6. Search Account
-                else if (choice == 6)
-                {  system("cls");
+                else if (choice == "6")
+                {
+                    system("cls");
                     cout << "\nEnter Account Number to Search: ";
                     int acc;
                     cin >> acc;
 
+                    bool found = false;
                     for (int i = 0; i < totalAccounts; i++)
                     {
                         if (accNo[i] == acc)
@@ -551,69 +581,146 @@ int main()
                             cout << "\nName: " << name[i];
                             cout << "\nAccount Number: " << accNo[i];
                             cout << "\nBalance: " << balance[i];
+                            found = true;
                             break;
-                            cout<<"\nPress any key to continue:";
-                            getch();
                         }
                     }
+                    if (!found)
+                    {
+                        cout << "\nAccount not found!";
+                    }
+                    cout << "\nPress any key to continue:";
+                    getch();
                 }
 
                 // 7. Change Account Name
-                else if (choice == 7)
+                else if (choice == "7")
                 {
                     system("cls");
                     cout << "\nEnter Account Number: ";
                     int acc;
                     cin >> acc;
 
+                    bool found = false;
                     for (int i = 0; i < totalAccounts; i++)
                     {
                         if (accNo[i] == acc)
                         {
-                            cout<<"\nEnter new account name:";
+                            cout << "\nEnter new account name:";
                             cin >> name[i];
                             cout << "Name of your account has been changed";
-                            cout<<"\nPress any key to continue:";
-                            getch();
+                            found = true;
                             break;
-
                         }
                     }
+                    if (!found)
+                    {
+                        cout << "\nAccount not found!";
+                    }
+                    cout << "\nPress any key to continue:";
+                    getch();
                 }
 
-                // 8. View All Accounts
-                else if (choice == 8)
+                // 8. Transfer money
+                else if (choice == "8")
                 {
                     system("cls");
+                    int sender, receiver, send;
+                    int senderIndex = -1;
+                    int receiverIndex = -1;
+                    cout << "\nEnter Your Account Number: ";
+                    cin >> sender;
+                    cout << "Enter Receiver Account Number: ";
+                    cin >> receiver;
+                    // Find sender
                     for (int i = 0; i < totalAccounts; i++)
                     {
-                        cout << "\n--- All Accounts ---";
-
-                        for (int i = 0; i < totalAccounts; i++)
+                        if (accNo[i] == sender)
                         {
-                            cout << "\nAccount No: " << accNo[i];
-                            cout << "\nName: " << name[i];
-                            cout << "\nBalance: " << balance[i];
-                            cout << "\n-------------------";
-                            cout<<"\nPress any key to continue:";
-                            getch();
+                            senderIndex = i;
+                            break;
                         }
                     }
-                }
-                // 9. Simple Summary
-                else if (choice == 9)
-                {      system("cls");
-                    int totalBalance = 0;
-
+                    // Find receiver
                     for (int i = 0; i < totalAccounts; i++)
                     {
-                        totalBalance += balance[i];
+                        if (accNo[i] == receiver)
+                        {
+                            receiverIndex = i;
+                            break;
+                        }
+                    }
+                    // Sender validation
+                    if (senderIndex == -1)
+                    {
+                        cout << "\nSender Account Not Found!";
+                    }
+                    // Receiver validation
+                    else if (receiverIndex == -1)
+                    {
+                        cout << "\nReceiver Account Not Found!";
+                    }
+                    // Frozen account check
+                    else if (status[senderIndex] == false)
+                    {
+                        cout << "\nYour Account is Frozen!";
                     }
 
-                    cout << "\nTotal Accounts: " << totalAccounts;
-                    cout << "\nTotal Balance: " << totalBalance;
-                    cout<<"\nPress any key to continue:";
-                            getch();
+                    else
+                    {
+                        cout << "Enter Amount to Transfer: ";
+                        cin >> send;
+                        // Invalid amount
+                        if (send <= 0)
+                        {
+                            cout << "\nInvalid Amount!";
+                        }
+                        // Balance check
+                        else if (balance[senderIndex] < send)
+                        {
+                            cout << "\nInsufficient Balance!";
+                        }
+                        else
+                        {
+                            balance[senderIndex] -= send;
+                            balance[receiverIndex] += send;
+                            cout << "\nTransfer Successful!";
+                        }
+                    }
+
+                    cout << "\nPress any key to continue:";
+                    getch();
+                }
+                // 9. Loan egligibility
+                else if (choice == "9")
+                {
+                    system("cls");
+                    cout << "Enter the account number:";
+                    int num;
+                    cin >> num;
+                    int index = -1;
+                    for (int i = 0; i < totalAccounts; i++)
+                    {
+                        if (num == accNo[i])
+                        {
+                            index = i;
+                            break;
+                        }
+                    }
+                    if (index == -1)
+                    {
+                        cout << "\nAccount not found!";
+                    }
+                    else if (balance[index] > 50000)
+                    {
+                        cout << "\n You are egligible for loan ";
+                    }
+                    else
+                    {
+                        cout << "\n You are not egligible for loan ";
+                    }
+                    cout << "\nPress any key to continue:";
+                    getch();
                 }
             }
         }
